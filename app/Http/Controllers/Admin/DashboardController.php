@@ -14,8 +14,22 @@ class DashboardController extends Controller
         return view('admin.dashboard.index');
     }
 
+    //show user key network
     public function showUser()
     {
-        return view('admin.users.view');
+        return view('admin.users-key.view');
+    }
+
+    //show profile user
+
+    public function showUserProfile()
+    {
+        return view('admin.users-key.view-profile');
+    }
+
+    //show user
+    public function showUserLogin()
+    {
+        return view('admin.users.list');
     }
 }
