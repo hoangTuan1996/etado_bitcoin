@@ -41,6 +41,10 @@
                             <input type="text" name="phone" placeholder="" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label>Số lượng tài được thêm</label>
+                            <input type="number" name="phone" placeholder="" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label>Ngày sinh</label>
                             <input
                                 class="form-control fc-datepicker hasDatepicker @if($errors->has('birthday')) is-invalid @endif"

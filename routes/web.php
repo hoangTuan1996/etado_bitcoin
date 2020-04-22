@@ -20,6 +20,6 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'prefix' => 'admin'], fu
     Route::get('users', 'DashboardController@showUserLogin')->name('users.index');
 
     //user key
-    Route::get('users-key-network', 'DashboardController@showUser')->name('usersKey.index');
-    Route::get('user-key-network/1/view', 'DashboardController@showUserProfile')->name('userskey.view');
+    Route::get('users-pinetwork', 'DashboardController@showUser')->name('usersPinetwork.index');
+    Route::get('user-key-network/1/view', 'DashboardController@showUserProfile')->name('usersPinetwork.view');
 });

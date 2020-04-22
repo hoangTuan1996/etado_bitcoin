@@ -16,21 +16,6 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-12 col-md-12 col-lg-12 col-xl-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row justify-content-lg-end">
-                        <div class="col-md-5 text-right">
-                            <a href="" class="btn btn-primary"><i class="fa fa-sign-in"></i> Đăng nhập lại</a>
-                            <a href="" class="btn btn-danger"><i class="ti-lock"></i> Đổi mật khẩu</a>
-                            <a href="" class="btn btn-danger"><i class="ti-trash"></i> Hủy</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-12 col-md-12 col-lg-12 col-xs-12">
             <div class="card">
                 <div class="card-header">
@@ -56,12 +41,9 @@
                                                 </div>
                                             </th>
                                             <th>STT</th>
-                                            <th>Loại tài khoản</th>
-                                            <th>Số điện thoại</th>
                                             <th>UserName</th>
                                             <th>Password</th>
                                             <th>Trạng thái</th>
-                                            <th>Ngày hết hạn</th>
                                             <th>Hành động</th>
                                         </tr>
                                         </thead>
@@ -78,18 +60,20 @@
                                                     </div>
                                                 </td>
                                                 <td>1</td>
-                                                <td>Nick Chính</td>
-                                                <td>0965565742</td>
                                                 <td>giangdev</td>
                                                 <td>Giangnt_2018@</td>
                                                 <td>
                                                     <div class="btn btn-sm btn btn-success">Đăng nhập</div>
                                                 </td>
-                                                <td>22/04/2020</td>
                                                 <td>
-                                                    <a href="{{ route('admin.userskey.view') }}" data-id=""
-                                                       class="user-btn-edit btn btn-sm btn-primary"><i
-                                                            class="ti-pencil"></i></a>
+                                                    <a href="{{ route('admin.usersPinetwork.view') }}" class="btn btn-sm btn-primary" style="float: left; margin-right: 5px"><i class="fa fa-eye"></i></a>
+                                                    <div class="dropright dropright"><button type="button"  class="btn btn-sm btn-outline-primary btn-rounded btn-icon"  data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+                                                            <i class="mdi mdi-dots-vertical"></i> </button>
+                                                        <ul class="dropdown-menu" x-placement="left-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-162px, 0px, 0px);">
+                                                            <li><a class="dropdown-item" href="/">Đăng nhập lại</a></li>
+                                                            <li><a class="dropdown-item">Hủy</a></li>
+                                                        </ul>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endfor
