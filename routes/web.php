@@ -17,3 +17,9 @@ Route::get('/', function () {
 
 Route::get('pitago', 'PitagoController@index');
 Route::post('pitago', 'PitagoController@post')->name('pitago');
+
+
+Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
+    Route::get('dashboards', 'DashboardController@index')->name('dashboard');
+    Route::get('users', 'DashboardController@showUser')->name('users.index');
+});
