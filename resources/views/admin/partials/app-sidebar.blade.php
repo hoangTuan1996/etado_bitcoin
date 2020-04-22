@@ -52,9 +52,15 @@
                     class="side-menu__label">Dashboard</span></a>
         </li>
         <li>
+            <a class="side-menu__item" href="{{ route('admin.usersPinetwork.index') }}"><i
+                    class="side-menu__icon fa fa-user-circle"></i><span
+                    class="side-menu__label">User Pinetwork</span></a>
+        </li>
+        <li><h3>Tài khoản</h3></li>
+        <li>
             <a class="side-menu__item" href="{{ route('admin.users.index') }}"><i
                     class="side-menu__icon ti-user"></i><span
-                    class="side-menu__label">User API</span></a>
+                    class="side-menu__label">Tài khoản</span></a>
         </li>
     </ul>
 </aside>

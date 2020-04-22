@@ -63,9 +63,7 @@
                                             <th>Loại tài khoản</th>
                                             <th>Số điện thoại</th>
                                             <th>UserName</th>
-                                            <th>Password</th>
                                             <th>Trạng thái</th>
-                                            <th>Ngày hết hạn</th>
                                             <th>Hành động</th>
                                         </tr>
                                         </thead>
@@ -85,15 +83,26 @@
                                                 <td>Nick Chính</td>
                                                 <td>0965565742</td>
                                                 <td>giangdev</td>
-                                                <td>Giangnt_2018@</td>
                                                 <td>
                                                     <div class="btn btn-sm btn btn-success">Đăng nhập</div>
                                                 </td>
-                                                <td>22/04/2020</td>
                                                 <td>
-                                                    <a href="javascript:void(0)" data-id=""
-                                                       class="user-btn-edit btn btn-sm btn-primary"><i
-                                                            class="ti-pencil"></i></a>
+                                                    <a href="{{ route('admin.usersPinetwork.view') }}"
+                                                       class="btn btn-sm btn-primary"
+                                                       style="float: left; margin-right: 5px"><i class="fa fa-eye"></i></a>
+                                                    <div class="dropright dropright" style="float: left;">
+                                                        <button type="button"
+                                                                class="btn btn-sm btn-outline-primary btn-rounded btn-icon"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                            <i class="mdi mdi-dots-vertical"></i></button>
+                                                        <ul class="dropdown-menu" x-placement="left-start"
+                                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-162px, 0px, 0px);">
+                                                            <li><a class="dropdown-item" href="/" data-toggle="modal"
+                                                                   data-target="#loginModal">Đăng nhập lại</a></li>
+                                                            <li><a class="dropdown-item">Hủy</a></li>
+                                                        </ul>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endfor
@@ -143,13 +152,6 @@
                             <input type="password" class="form-control" placeholder="Mật khẩu" name="password">
                         </div>
                         <div class="form-group">
-                            <label>Ngày hết hạn</label>
-                            <input
-                                class="form-control fc-datepicker hasDatepicker @if($errors->has('birthday')) is-invalid @endif"
-                                placeholder="MM/DD/YYYY" value="{{ old('birthday') }}" type="text" required
-                                name="birthday" id="dateTime">
-                        </div>
-                        <div class="form-group">
                             <label>Trạng thái</label>
                             <input type="checkbox" checked class="js-switch" data-color="#5e2dd8" data-size="small"
                                    name="status"/>
@@ -166,31 +168,20 @@
     </div>
 
 
-    <!--modal edit-->
-    <div class="modal fade" id="addEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!--modal add-->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form>
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Sửa tài khoản mới</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng nhập lại</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label>Loại tài khoản</label>
-                            <select class="form-control" name="user_type">
-                                <option value="">Nick chính</option>
-                                <option value="">Nick ref</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Số điện thoại</label>
-                            <input type="number" class="form-control" placeholder="Số điện thoại" name="phone">
-                        </div>
                         <div class="form-group">
                             <label>Username</label>
                             <input type="text" class="form-control" placeholder="Username" name="username">
@@ -199,22 +190,10 @@
                             <label>Mật khẩu</label>
                             <input type="password" class="form-control" placeholder="Mật khẩu" name="password">
                         </div>
-                        <div class="form-group">
-                            <label>Ngày hết hạn</label>
-                            <input
-                                class="form-control fc-datepicker hasDatepicker @if($errors->has('birthday')) is-invalid @endif"
-                                placeholder="MM/DD/YYYY" value="{{ old('birthday') }}" type="text" required
-                                name="birthday" id="dateTime">
-                        </div>
-                        <div class="form-group">
-                            <label>Trạng thái</label>
-                            <input type="checkbox" checked class="js-switch" data-color="#5e2dd8" data-size="small"
-                                   name="status"/>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary btn-sm"><i class="ti-plus"></i> Sửa tài khoản
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="ti-lock"></i> Đăng nhập lại
                         </button>
                     </div>
                 </form>
