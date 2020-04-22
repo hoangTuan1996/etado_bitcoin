@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f31d86f7-8cc7-48f1-ba97-2d5e561f8693" name="etado" url="http://198.143.186.143">
+        <fileTransfer host="198.143.186.143" port="21" rootFolder="/bella.giangdev.info">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
