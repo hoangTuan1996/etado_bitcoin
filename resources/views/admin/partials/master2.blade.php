@@ -39,6 +39,6 @@
 
 <body class="login-img">
 @yield('content')
-@include('admins.partials.footer-scripts')
+@include('admin.partials.footer-scripts')
 </body>
 </html>
