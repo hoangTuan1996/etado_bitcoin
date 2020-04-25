@@ -24,6 +24,6 @@ class Admin extends Authenticatable implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['name', 'code', 'email', 'password', 'phone', 'birthday', 'position', 'status', 'address', 'gender', 'information'];
+    protected $fillable = ['name', 'email', 'password', 'phone', 'birthday', 'status', 'limit_account'];
 
 }
