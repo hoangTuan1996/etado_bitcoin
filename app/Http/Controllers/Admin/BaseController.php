@@ -6,7 +6,7 @@ use App\Entities\Bill;
 use App\Entities\CategoriesCourse;
 use App\Entities\Category;
 use App\Entities\Registers;
-use App\Entities\User;
+use App\Entities\Account;
 use App\Notifications\NewCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -83,10 +83,11 @@ abstract class BaseController extends AbstractController
      */
     protected function actionData($url1, $id, $name, $url2)
     {
-        $html = ' <div class="dropright dropright"><button type="button"  class="btn btn-sm btn-outline-primary btn-rounded btn-icon"  data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+        $html = '<a href="' . $url1 . '" class="btn btn-sm btn-primary" style="float: left; margin-right: 5px"><i class="fa fa-eye"></i></a>';
+        $html .= ' <div class=""><button type="button"  class="btn btn-sm btn-outline-primary btn-rounded btn-icon"  data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
                   <i class="mdi mdi-dots-vertical"></i> </button>
                   <ul class="dropdown-menu" x-placement="left-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-162px, 0px, 0px);">
-                        <li><a class="dropdown-item" href="' . $url1 . '">' . __('messages.reviews.edit') . '</a></li>
+                        <li><a class="dropdown-item" href="' . $url1 . '">Đăng nhập lại</a></li>
                         <li><a class="dropdown-item" data-toggle="modal"  data-target="#deleteData-' . $id . '">' . __('messages.manage_photo.delete') . '</a> </li>
                    </ul>
                    </div>';

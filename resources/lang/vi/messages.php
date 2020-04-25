@@ -10,7 +10,16 @@ return [
         'added_success' => "Thêm thành công",
         'edited_success' => "Sửa thành công"
     ],
+    'header' => [
+        'title_delete' => 'Bạn có chắc muốn xóa ?',
+    ],
 
+    'property' => [
+        'continue' => 'Tiếp tục',
+    ],
+    'booking_my' => [
+        'cancel' => 'Hủy',
+    ],
     'error' => [
         'oops' => 'Rất tiếc!',
         'author_action ' => ' Hành động trái phép ',
@@ -33,9 +42,9 @@ return [
         'expired_course' => "Khóa học đã hết hạn, bạn vui gia hạn khóa học",
         'please_login_to_pay' => "Vui lòng đăng nhập để có thể tiến hành thanh toán",
     ],
-    'reviews'=>[
+    'reviews' => [
         'edit' => 'Sửa',
-    ], 'manage_photo'=>[
+    ], 'manage_photo' => [
         'delete' => 'Xóa',
     ]
 ];
