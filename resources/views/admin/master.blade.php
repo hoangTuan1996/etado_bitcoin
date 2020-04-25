@@ -35,5 +35,6 @@
             </div>
         </div>
 @include('admin.partials.footer-scripts')
+@include('sweetalert::alert')
 </body>
 </html>

@@ -19,9 +19,16 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'prefix' => 'admin'], fu
     Route::resource('login', 'LoginController');
 });
 
-Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['admin'], 'namespace' => 'Admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
+    //Admin
+    Route::resource('users', 'AdminController');
+    Route::get('user/delete/{id}', 'AdminController@delete')->name('users.delete');
+    Route::post('users/{user}', 'AdminController@update')->name('users.update');
+    Route::get('data-users', 'AdminController@anyData')->name('users.data');
+    Route::delete('users/delete-multi', 'AdminController@destroy')->name('users.delMulti');
+
     Route::get('dashboards', 'DashboardController@index')->name('dashboard');
-    Route::get('users', 'DashboardController@showUserLogin')->name('users.index');
+//    Route::get('users', 'DashboardController@showUserLogin')->name('users.index');
     //user key
     Route::get('users-pinetwork', 'DashboardController@showUser')->name('usersPinetwork.index');
     Route::get('user-key-network/1/view', 'DashboardController@showUserProfile')->name('usersPinetwork.view');

@@ -4,18 +4,19 @@
     <div class="side-header">
         <a class="header-brand1" href="{{ route('admin.dashboard') }}">
             <img
-                src="{{URL::asset('assets/images/brand/logo-3.png')}}"
-                class="header-brand-img light-logo1" alt="logo">
+                    src="{{URL::asset('assets/images/brand/logo-3.png')}}"
+                    class="header-brand-img light-logo1" alt="logo">
         </a><!-- LOGO -->
         <a aria-label="Hide Sidebar" class="app-sidebar__toggle ml-auto" data-toggle="sidebar" href="#"></a>
     </div><!--logo-->
     <div class="app-sidebar__user">
         <div class="dropdown user-pro-body text-center">
             <div class="user-pic">
-                <img src="{{ URL::asset('assets/images/users/10.jpg') }}" alt="user-img" class="avatar-xl rounded-circle">
+                <img src="{{ URL::asset('assets/images/users/10.jpg') }}" alt="user-img"
+                     class="avatar-xl rounded-circle">
             </div>
             <div class="user-info">
-                <h6 class=" mb-0 text-dark">Admin</h6>
+                <h6 class=" mb-0 text-dark">{{Auth::guard('admin')->user()->name}}</h6>
                 <span class="text-muted app-sidebar__user-name text-sm">Administrator</span>
             </div>
         </div>
@@ -48,20 +49,22 @@
         <li><h3>Menu</h3></li>
         <li>
             <a class="side-menu__item" href="{{ route('admin.dashboard') }}"><i
-                    class="side-menu__icon ti-home"></i><span
-                    class="side-menu__label">Dashboard</span></a>
+                        class="side-menu__icon ti-home"></i><span
+                        class="side-menu__label">Dashboard</span></a>
         </li>
         <li>
             <a class="side-menu__item" href="{{ route('admin.usersPinetwork.index') }}"><i
-                    class="side-menu__icon fa fa-user-circle"></i><span
-                    class="side-menu__label">User Pinetwork</span></a>
+                        class="side-menu__icon fa fa-user-circle"></i><span
+                        class="side-menu__label">User Pinetwork</span></a>
         </li>
-        <li><h3>Tài khoản</h3></li>
-        <li>
-            <a class="side-menu__item" href="{{ route('admin.users.index') }}"><i
-                    class="side-menu__icon ti-user"></i><span
-                    class="side-menu__label">Tài khoản</span></a>
-        </li>
+        @if(Auth::guard('admin')->user()->can('user-list'))
+            <li><h3>Tài khoản</h3></li>
+            <li>
+                <a class="side-menu__item" href="{{ route('admin.users.index') }}"><i
+                            class="side-menu__icon ti-user"></i><span
+                            class="side-menu__label">Tài khoản</span></a>
+            </li>
+        @endif
     </ul>
 </aside>
 <!--/APP-SIDEBAR-->
