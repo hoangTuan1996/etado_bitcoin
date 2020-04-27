@@ -14,13 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
-Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
-    Route::resource('login', 'LoginController');
-});
 
 Route::group(['middleware' => ['admin'], 'namespace' => 'Admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
     //Dashboard
+    Route::get('/', 'DashboardController@index');
     Route::get('dashboards', 'DashboardController@index')->name('dashboard');
 
     //Admin
@@ -40,4 +37,9 @@ Route::group(['middleware' => ['admin'], 'namespace' => 'Admin', 'as' => 'admin.
     //user key
     Route::get('users-pinetwork', 'DashboardController@showUser')->name('usersPinetwork.index');
     Route::get('user-key-network/1/view', 'DashboardController@showUserProfile')->name('usersPinetwork.view');
+});
+
+//Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
+    Route::resource('login', 'LoginController');
 });

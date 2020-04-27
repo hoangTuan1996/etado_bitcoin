@@ -25,9 +25,9 @@
                             <button type="button" class="btn btn-primary btnMargin" data-toggle="modal"
                                     data-target="#addUser"><i
                                         class="ti-plus"></i></button>
-                            <button class="btn waves-effect waves-light btn-outline-secondary btnMargin">Tài khoản đã
-                                tạo
-                                <b>7/10</b></button>
+                            <button class="btn waves-effect waves-light btn-outline-secondary btnMargin">
+                                Tài khoản đã tạo
+                                <b>{{count($accounts)}}/{{$admin->limit_account}}</b></button>
                         </div>
                     </div>
                 </div>

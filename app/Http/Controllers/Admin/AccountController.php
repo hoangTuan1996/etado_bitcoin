@@ -10,6 +10,7 @@ use App\Jobs\Account\StoreJob;
 use App\Jobs\Account\UpdateJob;
 use App\Repositories\AccountRepositoryEloquent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 use App\Repositories\AdminRepositoryEloquent;
 
@@ -17,7 +18,9 @@ class AccountController extends BaseController
 {
     public function index()
     {
-        return view('admin.account.view');
+        $data['admin'] = Auth::guard('admin')->user();
+        $data['accounts'] = Account::where('admin_id', $data['admin']->id)->get();
+        return view('admin.account.view')->with($data);
     }
 
     public function store(StoreRequest $request)
@@ -64,7 +67,7 @@ class AccountController extends BaseController
 
     public function anyData()
     {
-        $account = Account::orderBy('id', 'DESC')->get();
+        $account = Account::where('admin_id', Auth::guard('admin')->user()->id)->orderBy('id', 'DESC')->get();
         return DataTables::of($account)->editColumn('status', function ($account) {
             return $this->showStatus($account->status);
         })->addColumn('checkbox', function ($account) {
