@@ -18,16 +18,23 @@ class PermissionTableSeeder extends Seeder
 
         $this->command->info(get_class($this) . ' seeding completed successfully');
 
-        Permission::create(['name' => 'user-list', 'group' => 'users', 'display_name' => 'Xem thành viên', 'guard_name' => 'admin']);
-        Permission::create(['name' => 'user-create', 'group' => 'users', 'display_name' => 'Thêm thành viên', 'guard_name' => 'admin']);
-        Permission::create(['name' => 'user-edit', 'group' => 'users', 'display_name' => 'Sửa thành viên', 'guard_name' => 'admin']);
-        Permission::create(['name' => 'user-delete', 'group' => 'users', 'display_name' => 'Xóa thành viên', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'admin', 'group' => 'admins', 'display_name' => 'Quyền admin', 'guard_name' => 'admin']);
 
         $user = Admin::create([
                 'name' => 'Super Admin',
                 'email' => 'super_admin@gmail.com',
                 'password' => bcrypt('12345678'),
                 'status' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
+        Admin::create([
+                'name' => 'Hải',
+                'email' => 'haidamda@gmail.com',
+                'password' => bcrypt('123123123'),
+                'status' => 1,
+                'limit_account' => 10,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

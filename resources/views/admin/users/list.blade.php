@@ -1,15 +1,15 @@
 @extends('admin.master')
 @section('title')
-    Danh sách tài khoản
+    Danh sách người dùng
 @endsection
 @section('page-header')
     <!-- PAGE-HEADER -->
     <div>
-        <h1 class="page-title">Danh sách tài khoản</h1>
+        <h1 class="page-title">Danh sách người dùng</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a>
             </li>
-            <li class="breadcrumb-item"><a href="/">Danh sách tài khoản</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.accounts.index')}}">Danh sách người dùng</a></li>
         </ol>
     </div>
     <!-- PAGE-HEADER END -->
@@ -22,7 +22,7 @@
         <div class="col-12 col-md-7 col-lg-7 col-xs-7">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Danh sách tài khoản</div>
+                    <div class="card-title">Danh sách người dùng</div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -43,9 +43,10 @@
                                                     </label>
                                                 </div>
                                             </th>
-                                            <th>Email</th>
+                                            <th>id</th>
                                             <th>Tên hiển thị</th>
                                             <th>Số điện thoại</th>
+                                            <th>Số tài khoản</th>
                                             <th>Trạng thái</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -98,6 +99,7 @@
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
+                    {data: 'limit_account', name: 'limit_account'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]

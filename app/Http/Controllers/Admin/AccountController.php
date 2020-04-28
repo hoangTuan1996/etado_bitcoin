@@ -33,9 +33,9 @@ class AccountController extends BaseController
 
     public function edit($id)
     {
-//        $data['user'] = Admin::where('id', $id)->where('status', config('model.status.on'))->first();
-//        return view('admin.account.view-profile')->with($data);
-        return view('admin.account.view-profile');
+        $data['account'] = Account::where('id', $id)->where('status', config('model.status.on'))->first();
+//        return view('admin.account.edit')->with($data);
+        return view('admin.account.view-profile')->with($data);
     }
 
     /**
@@ -74,6 +74,8 @@ class AccountController extends BaseController
             return $this->checkboxData($account->id);
         })->addColumn('type_account', function ($account) {
             return $this->showType($account->type);
+        })->addColumn('time', function ($account) {
+            return $this->formatDate($account->updated_at);
         })->addColumn('action', function ($account) {
             return $this->actionData(route('admin.accounts.edit', $account->id), $account->id, $account->name, route('admin.accounts.delete', $account->id));
         })->rawColumns(['checkbox', 'status', 'action'])->escapeColumns([])->make(true);
@@ -81,26 +83,26 @@ class AccountController extends BaseController
 
     public function destroy(Request $request)
     {
-        if (\Auth::guard('admin')->user()->can('user-delete')) {
-            try {
-                $id_args = $request->get('id');
-                Account::whereIn('id', $id_args)->delete();
-                return response()->json([
-                    'success' => true,
-                    'message' => __('messages.success.deleted_success')
-                ]);
-            } catch (\Exception $e) {
-                \Alert::error(__('messages.error.oops'), $e->getMessage());
-                return redirect()->back();
-            }
-        } else {
-            abort(403);
+        try {
+            $id_args = $request->get('id');
+            Account::whereIn('id', $id_args)->delete();
+            return response()->json([
+                'success' => true,
+                'message' => __('messages.success.deleted_success')
+            ]);
+        } catch (\Exception $e) {
+            \Alert::error(__('messages.error.oops'), $e->getMessage());
+            return redirect()->back();
         }
-
     }
 
     protected function showType($value)
     {
         return ($value != config('model.account.ref')) ? 'Nick chính' : 'Nick phụ';
+    }
+
+    public function loginCronjob()
+    {
+        $accounts = Account::all();
     }
 }

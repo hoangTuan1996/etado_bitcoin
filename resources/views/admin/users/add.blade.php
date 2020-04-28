@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <div class="card-title">Thêm tài khoản mới</div>
+        <div class="card-title">Thêm người dùng mới</div>
     </div>
     <div class="card-body">
         <form method="post" action="{{route('admin.users.store')}}">
@@ -34,7 +34,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label>Số lượng tài được thêm</label>
+                <label>Số lượng tài khoản</label>
                 <input type="number" name="limit_account" placeholder="" class="form-control">
                 @error('limit_account')
                 <strong style="color: red">{{ $message }}</strong>
@@ -56,7 +56,7 @@
                        name="status"/>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-sm"><i class="ti-plus"></i> Thêm tài khoản
+                <button type="submit" class="btn btn-success btn-sm"><i class="ti-plus"></i> Thêm người dùng
                 </button>
             </div>
         </form>

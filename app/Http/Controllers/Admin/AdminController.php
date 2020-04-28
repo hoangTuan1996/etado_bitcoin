@@ -16,7 +16,7 @@ class AdminController extends BaseController
 {
     public function index()
     {
-        if (\Auth::guard('admin')->user()->can('user-list')) {
+        if (\Auth::guard('admin')->user()->can('admin')) {
 //            dd(1);
             return view('admin.users.list');
         } else {
@@ -26,7 +26,7 @@ class AdminController extends BaseController
 
     public function store(StoreRequest $request)
     {
-        if (\Auth::guard('admin')->user()->can('user-create')) {
+        if (\Auth::guard('admin')->user()->can('admin')) {
             return $this->doRequest('/admin/users', 'added', $request, function ($params) {
                 $this->dispatchNow(new StoreJob($params));
             });
@@ -37,8 +37,12 @@ class AdminController extends BaseController
 
     public function edit($id)
     {
-        $data['user'] = Admin::where('id', $id)->where('status', config('model.status.on'))->first();
-        return view('admin.users.edit')->with($data);
+        if (\Auth::guard('admin')->user()->can('admin')) {
+            $data['user'] = Admin::where('id', $id)->where('status', config('model.status.on'))->first();
+            return view('admin.users.edit')->with($data);
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -48,10 +52,10 @@ class AdminController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        if (\Auth::guard('admin')->user()->can('user-edit')) {
+        if (\Auth::guard('admin')->user()->can('admin')) {
             $admin = Admin::where('id', $id)->first();
             return $this->doRequest('admin/users', 'edited', $request, function ($params) use ($admin) {
-                $this->dispatchNow(new UpdateJob($admin,$params));
+                $this->dispatchNow(new UpdateJob($admin, $params));
             });
         } else {
             abort(403);
@@ -65,7 +69,7 @@ class AdminController extends BaseController
      */
     public function delete($id, AdminRepositoryEloquent $repositoryEloquent)
     {
-        if (\Auth::guard('admin')->user()->can('user-delete')) {
+        if (\Auth::guard('admin')->user()->can('admin')) {
             $repositoryEloquent->delete($id);
             \Alert::success(__('messages.success.success'), __('messages.success.deleted_success'));
             return redirect()->back();
@@ -81,8 +85,8 @@ class AdminController extends BaseController
             return $this->showStatus($users->status);
         })->addColumn('checkbox', function ($users) {
             return $this->checkboxData($users->id);
-        })->addColumn('images', function ($users) {
-            return '<div class="avatar-table"><img src="' . $users->avatar . '" alt="' . $users->name . '"></div>';
+        })->addColumn('limit_account', function ($users) {
+            return $users->limit_account == 0 ? 'Không giới hạn' : $users->limit_account;
         })->addColumn('action', function ($users) {
             return $this->actionData(route('admin.users.edit', $users->id), $users->id, $users->name, route('admin.users.delete', $users->id));
         })->rawColumns(['checkbox', 'status', 'action', 'images'])->escapeColumns([])->make(true);
@@ -90,7 +94,7 @@ class AdminController extends BaseController
 
     public function destroy(Request $request)
     {
-        if (\Auth::guard('admin')->user()->can('user-delete')) {
+        if (\Auth::guard('admin')->user()->can('admin')) {
             try {
                 $id_args = $request->get('id');
                 Admin::whereIn('id', $id_args)->delete();

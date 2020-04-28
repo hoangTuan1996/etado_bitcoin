@@ -12,7 +12,7 @@
     <div class="app-sidebar__user">
         <div class="dropdown user-pro-body text-center">
             <div class="user-pic">
-                <img src="{{ URL::asset('assets/images/users/10.jpg') }}" alt="user-img"
+                <img src="{{ URL::asset('images/admin_default.png') }}" alt="user-img"
                      class="avatar-xl rounded-circle">
             </div>
             <div class="user-info">
@@ -21,30 +21,30 @@
             </div>
         </div>
     </div><!--info-user-->
-    <div class="sidebar-navs">
-        <ul class="nav  nav-pills-circle">
-            <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Settings">
-                <a class="nav-link text-center m-2">
-                    <i class="fe fe-settings"></i>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Chat">
-                <a class="nav-link text-center m-2">
-                    <i class="fe fe-mail"></i>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Followers">
-                <a class="nav-link text-center m-2">
-                    <i class="fe fe-user"></i>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Logout">
-                <a class="nav-link text-center m-2">
-                    <i class="fe fe-power"></i>
-                </a>
-            </li>
-        </ul>
-    </div><!--user-control-->
+    {{--<div class="sidebar-navs">--}}
+        {{--<ul class="nav  nav-pills-circle">--}}
+            {{--<li class="nav-item" data-toggle="tooltip" data-placement="top" title="Settings">--}}
+                {{--<a class="nav-link text-center m-2">--}}
+                    {{--<i class="fe fe-settings"></i>--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item" data-toggle="tooltip" data-placement="top" title="Chat">--}}
+                {{--<a class="nav-link text-center m-2">--}}
+                    {{--<i class="fe fe-mail"></i>--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item" data-toggle="tooltip" data-placement="top" title="Followers">--}}
+                {{--<a class="nav-link text-center m-2">--}}
+                    {{--<i class="fe fe-user"></i>--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item" data-toggle="tooltip" data-placement="top" title="Logout">--}}
+                {{--<a class="nav-link text-center m-2">--}}
+                    {{--<i class="fe fe-power"></i>--}}
+                {{--</a>--}}
+            {{--</li>--}}
+        {{--</ul>--}}
+    {{--</div><!--user-control-->--}}
     <ul class="side-menu">
         <li><h3>Menu</h3></li>
         <li>
@@ -55,14 +55,14 @@
         <li>
             <a class="side-menu__item" href="{{ route('admin.accounts.index') }}"><i
                         class="side-menu__icon fa fa-user-circle"></i><span
-                        class="side-menu__label">User Pinetwork</span></a>
+                        class="side-menu__label">Tài khoản</span></a>
         </li>
-        @if(Auth::guard('admin')->user()->can('user-list'))
+        @if(Auth::guard('admin')->user()->can('admin'))
             <li><h3>Tài khoản</h3></li>
             <li>
                 <a class="side-menu__item" href="{{ route('admin.users.index') }}"><i
                             class="side-menu__icon ti-user"></i><span
-                            class="side-menu__label">Tài khoản</span></a>
+                            class="side-menu__label">Người dùng</span></a>
             </li>
         @endif
     </ul>

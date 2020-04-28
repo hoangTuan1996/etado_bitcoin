@@ -19,6 +19,7 @@ class CreateAccountsTable extends Migration
             $table->increments('id');
             $table->integer('type')->default(config('model.account.ref'));
             $table->string('name')->index();
+            $table->string('token')->nullable();
             $table->string('password');
             $table->string('phone')->nullable()->index();
             $table->unsignedTinyInteger('status')->default(config('model.status.on'));
