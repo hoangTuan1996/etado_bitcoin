@@ -60,20 +60,6 @@ abstract class BaseController extends AbstractController
         return ($value == 1) ? '<div class="btn btn-sm btn-success">' . __('admin.statusTable.on') . '</div>' : '<div class="btn btn-sm btn-danger">' . __('admin.statusTable.off') . '</div>';
     }
 
-    protected function showStatusContact($value)
-    {
-        $data = '';
-        if ($value == 1) {
-            $data = '<div class="btn btn-sm btn-warning">' . __('admin.statusContact.not-contact') . '</div>';
-        } elseif ($value == 2) {
-            $data = '<div class="btn btn-sm btn-success">' . __('admin.statusContact.contact-success') . '</div>';
-        } elseif ($value == 3) {
-            $data = '<div class="btn btn-sm btn-danger">' . __('admin.statusContact.not-success') . '</div>';
-        }
-
-        return $data;
-    }
-
     /**
      * @param $url1
      * @param $id
@@ -132,35 +118,6 @@ abstract class BaseController extends AbstractController
 
     /**
      * @param $value
-     */
-    protected function showCategory($value)
-    {
-        $category = explode('|', $value);
-        $data = Category::whereIn('id', $category)->get();
-        $html = "<div class='category-list'>";
-        $html .= "<ul>";
-        foreach ($data as $cate):
-            $html .= '<li><a href="">' . $cate->name . '</a></li>';
-        endforeach;
-        $html .= "</ul>";
-        $html .= "</div>";
-        return $html;
-    }
-
-
-    public function getHot($value, $is_hot)
-    {
-        $hot = ($is_hot == 1) ? 'is-active' : "";
-        $html = '<div class="featured-icon">
-                    <div class="btn-show-home home-' . $value . ' ' . $hot . '" data-id="' . $value . '" onclick="return clickHot(`' . $value . '`)"><i class="fas fa-star"></i>
-                     <div class="spin-' . $value . ' spinner-border text-info hide" role="status"> <span class="sr-only">Loading...</span></div>
-                    </div>
-               </div>';
-        return $html;
-    }
-
-    /**
-     * @param $value
      * @param $status
      * @return string
      */
@@ -175,13 +132,8 @@ abstract class BaseController extends AbstractController
         return $html;
     }
 
-    /**
-     * @param $value
-     * @return string
-     */
-    protected function showStatusOrder($value)
+    public function formatDate($value)
     {
-        return ($value == 1) ? '<div class="btn btn-sm btn-success">' . __('admin.orders.success') . '</div>' : '<div class="btn btn-sm btn-danger">' . __('admin.orders.error') . '</div>';
+        return strftime("%d-%m-%Y", strtotime($value));
     }
-
 }

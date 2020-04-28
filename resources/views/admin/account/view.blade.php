@@ -22,12 +22,20 @@
                     <div class="row justify-content-lg-end">
                         <div class="col-md-3 text-right">
                             <a href="/" class="btn btn-default btnMargin"><i class="ti-filter"></i></a>
-                            <button type="button" class="btn btn-primary btnMargin" data-toggle="modal"
-                                    data-target="#addUser"><i
-                                        class="ti-plus"></i></button>
+                            @if(count($accounts) < $admin->limit_account )
+                                <button type="button" class="btn btn-primary btnMargin" data-toggle="modal"
+                                        data-target="#addUser"><i
+                                            class="ti-plus"></i>
+                                </button>
+                            @endif
                             <button class="btn waves-effect waves-light btn-outline-secondary btnMargin">
                                 Tài khoản đã tạo
-                                <b>{{count($accounts)}}/{{$admin->limit_account}}</b></button>
+                                @if (Auth::guard('admin')->user()->can('admin'))
+                                    <b>{{count($accounts)}}</b>
+                                @else
+                                    <b>{{count($accounts)}}/{{$admin->limit_account}}</b>
+                                @endif
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -63,6 +71,7 @@
                                             <th>Loại tài khoản</th>
                                             <th>Số điện thoại</th>
                                             <th>UserName</th>
+                                            <th>Đăng nhập lần cuối</th>
                                             <th>Trạng thái</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -163,6 +172,7 @@
                     {data: 'type_account', name: 'type_account'},
                     {data: 'phone', name: 'phone'},
                     {data: 'name', name: 'name'},
+                    {data: 'time', name: 'time'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
